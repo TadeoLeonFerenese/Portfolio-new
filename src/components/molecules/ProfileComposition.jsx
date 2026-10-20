@@ -1,29 +1,21 @@
 import { useContent } from '@/data/i18n/content.js'
-import OrbitNode from './OrbitNode.jsx'
+// import OrbitNode from './OrbitNode.jsx'
 
 /**
- * Visual hero composition with glowing orbital ring, structured profile placeholder,
- * and 4 technological pillars.
+ * Visual hero composition with glowing orbital ring and cutout profile figure.
+ * Minimalist, high-impact aesthetic: zero visual clutter around the portrait.
  * @param {{ className?: string }} props
  */
 export default function ProfileComposition({ className = '' }) {
   const { profile } = useContent()
-  const [pillarTopLeft, pillarTopRight, pillarBottomLeft, pillarBottomRight] = profile.pillars
-
 
   return (
     <div
       className={`relative flex w-full flex-1 max-w-[650px] flex-col items-center justify-center py-6 px-2 md:min-h-[500px] ${className}`}
     >
-      {/* Subtle outer dashed orbit track */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute size-[470px] rounded-full border border-dashed border-red-500/25 hidden md:block"
-      />
-
-      {/* Central Pop-Out Composition: Thick Ring BEHIND + Cutout Figure IN FRONT */}
+      {/* Central Pop-Out Composition: Thick Glowing Torus Ring BEHIND + Cutout Figure IN FRONT */}
       <div className="relative flex items-center justify-center">
-        {/* Thick Glowing Torus Ring Behind Figure (like reference image) */}
+        {/* Thick Glowing Torus Ring Behind Figure */}
         <div
           data-testid="orbit-ring"
           aria-hidden="true"
@@ -51,37 +43,15 @@ export default function ProfileComposition({ className = '' }) {
         )}
       </div>
 
-      {/* Desktop Orbiting Layout (Positioned along the outer ring perimeter) */}
-      <div className="pointer-events-none absolute inset-0 z-30 hidden md:block">
-        {pillarTopLeft && (
-          <div className="pointer-events-auto absolute top-4 left-0 xl:-left-4">
-            <OrbitNode pillar={pillarTopLeft} />
-          </div>
-        )}
-        {pillarTopRight && (
-          <div className="pointer-events-auto absolute top-4 right-0 xl:-right-4">
-            <OrbitNode pillar={pillarTopRight} />
-          </div>
-        )}
-        {pillarBottomLeft && (
-          <div className="pointer-events-auto absolute bottom-6 left-0 xl:-left-4">
-            <OrbitNode pillar={pillarBottomLeft} />
-          </div>
-        )}
-        {pillarBottomRight && (
-          <div className="pointer-events-auto absolute bottom-6 right-0 xl:-right-4">
-            <OrbitNode pillar={pillarBottomRight} />
-          </div>
-        )}
-      </div>
-
-      {/* Mobile Stacked Layout (Clean grid below the figure) */}
-      <div className="mt-8 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:hidden">
+      {/* Accessible semantic pillar list for screen readers and SEO */}
+      <div className="sr-only" aria-label="Pilares tecnológicos">
         {profile.pillars.map((pillar) => (
-          <OrbitNode key={pillar.id} pillar={pillar} />
+          <div key={pillar.id}>
+            <span>{pillar.label}</span>
+            <span>{pillar.description}</span>
+          </div>
         ))}
       </div>
     </div>
   )
 }
-

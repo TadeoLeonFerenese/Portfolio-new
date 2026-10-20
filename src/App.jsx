@@ -9,7 +9,7 @@ import { LanguageProvider } from '@/context/LanguageContext.jsx'
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-surface font-sans text-zinc-100 antialiased selection:bg-red-500/20 selection:text-red-300">
+      <div className="relative min-h-screen overflow-x-clip bg-surface font-sans text-zinc-100 antialiased selection:bg-red-500/20 selection:text-red-300">
         <header className="fixed top-0 z-50 w-full">
 
           <Navbar />

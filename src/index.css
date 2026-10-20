@@ -11,6 +11,21 @@
   --color-online: var(--color-emerald-400);
 }
 
+@keyframes terminalPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.terminal-pop-item {
+  opacity: 0;
+  animation: terminalPop 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
 @layer base {
   html {

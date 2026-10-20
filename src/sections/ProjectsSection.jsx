@@ -10,16 +10,12 @@ export default function ProjectsSection() {
   const { projects, ui } = useContent()
 
   return (
-    <section id="proyectos" className="relative overflow-hidden px-6 py-24 sm:py-32">
-      {/* Warm ambient background glows */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/4 -left-24 size-[550px] rounded-full bg-red-600/10 blur-[140px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-1/4 -right-24 size-[500px] rounded-full bg-orange-500/10 blur-[140px]"
-      />
+    <section id="proyectos" className="relative px-6 py-24 sm:py-32">
+      {/* Warm ambient background glows (unclipped vertically for seamless page flow) */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/4 -left-24 size-[550px] rounded-full bg-red-600/8 blur-[150px]" />
+        <div className="absolute bottom-1/4 -right-24 size-[500px] rounded-full bg-orange-500/8 blur-[150px]" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Section Header */}

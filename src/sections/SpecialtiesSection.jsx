@@ -12,16 +12,12 @@ export default function SpecialtiesSection() {
   const { specialties, ui } = useContent()
 
   return (
-    <section id="especialidades" className="relative overflow-hidden px-6 py-24 md:py-32">
-      {/* Background subtle warm glows */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-1/4 size-[500px] rounded-full bg-red-600/8 blur-[130px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 bottom-1/4 size-[450px] rounded-full bg-orange-500/8 blur-[130px]"
-      />
+    <section id="especialidades" className="relative px-6 py-24 md:py-32">
+      {/* Background subtle warm glows (unclipped vertically for seamless page flow) */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-1/4 size-[500px] rounded-full bg-red-600/7 blur-[150px]" />
+        <div className="absolute right-0 bottom-1/4 size-[450px] rounded-full bg-orange-500/7 blur-[150px]" />
+      </div>
 
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}

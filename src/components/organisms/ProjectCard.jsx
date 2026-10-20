@@ -13,6 +13,26 @@ import {
 import MediaPlaceholder from '../molecules/MediaPlaceholder.jsx'
 import PipelineFlow from '../molecules/PipelineFlow.jsx'
 
+function PokeballIcon({ className = 'size-7' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <line x1="3" y1="12" x2="9" y2="12" />
+      <line x1="15" y1="12" x2="21" y2="12" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  )
+}
+
 const COVER_THEME_BY_ID = {
   'nodo-inventory': {
     gradient: 'from-red-600/30 via-orange-500/20 to-zinc-950',
@@ -20,8 +40,10 @@ const COVER_THEME_BY_ID = {
     pillStyle: 'border-red-500/30 bg-red-500/10 text-red-200',
     coverTag: 'WINDOWS + ANDROID • LOCAL-FIRST AI',
     Icon: Blocks,
+    appIconSrc: '/images/projects/nodo/icon.png',
+    coverPreviewImg: '/images/projects/nodo/windows-catalogo.jpg',
     iconAccent:
-      'border-white/10 bg-zinc-950/80 text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]',
+      'border-white/15 bg-white/95 text-red-500 shadow-[0_0_16px_rgba(239,68,68,0.45)]',
   },
   'bunker-notas': {
     gradient: 'from-orange-600/30 via-amber-500/20 to-zinc-950',
@@ -29,8 +51,10 @@ const COVER_THEME_BY_ID = {
     pillStyle: 'border-orange-500/30 bg-orange-500/10 text-orange-200',
     coverTag: 'ANDROID NATIVE • ENCRYPTED VAULT + IA',
     Icon: Bot,
+    appIconSrc: '/images/projects/bunker-notas/icon.png',
+    coverPreviewVideo: '/videos/projects/bunker-notas.mp4',
     iconAccent:
-      'border-white/10 bg-zinc-950/80 text-orange-400 drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]',
+      'border-white/15 bg-zinc-950/90 text-orange-400 shadow-[0_0_16px_rgba(249,115,22,0.45)]',
   },
   'poder-judicial': {
     gradient: 'from-amber-500/25 via-red-900/25 to-zinc-950',
@@ -46,7 +70,7 @@ const COVER_THEME_BY_ID = {
     accentBorder: 'hover:border-rose-500/50 hover:shadow-[0_15px_40px_-12px_rgba(244,63,94,0.28)]',
     pillStyle: 'border-rose-500/30 bg-rose-500/10 text-rose-200',
     coverTag: 'PRIMERA PÁGINA WEB • HITO INICIAL',
-    Icon: Rocket,
+    Icon: PokeballIcon || Rocket,
     iconAccent:
       'border-white/10 bg-zinc-950/80 text-rose-500 drop-shadow-[0_0_10px_rgba(244,63,94,0.7)]',
   },
@@ -90,17 +114,19 @@ export default function ProjectCard({ project }) {
   }
 
   const [activeTab, setActiveTab] = useState(availableTabs[0]?.id ?? 'architecture')
+  const [activeCaptureIndex, setActiveCaptureIndex] = useState(0)
 
   // Group media slots for captures tab
   const desktopMedia = media.filter((m) => m.type === 'device-desktop')
   const androidMedia = media.filter((m) => m.type === 'device-android')
   const otherImages = media.filter((m) => m.type === 'image')
+  const hasRealDesktopCaptures = desktopMedia.length > 1 && desktopMedia.every((m) => Boolean(m.src))
 
   return (
     <article
       className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/65 shadow-xl shadow-black/50 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:bg-zinc-900/85 ${theme.accentBorder}`}
     >
-      {/* Top Visual Cover Header (inspired by reference portfolio) */}
+      {/* Top Visual Cover Header (uniform across all projects like Pedimon) */}
       <div className="relative h-48 w-full shrink-0 overflow-hidden border-b border-white/10 bg-zinc-950">
         {/* Animated zoom background canvas */}
         <div
@@ -116,6 +142,28 @@ export default function ProjectCard({ project }) {
             aria-hidden="true"
             loading="lazy"
             className="pointer-events-none absolute top-0 left-0 h-[250%] w-[250%] origin-top-left scale-40 border-0 opacity-30 transition-opacity duration-500 group-hover:opacity-50"
+          />
+        )}
+        {/* Image cover background preview (e.g. Nodo Windows app) */}
+        {!demo && theme.coverPreviewImg && (
+          <img
+            src={theme.coverPreviewImg}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="pointer-events-none absolute inset-0 size-full object-cover object-top opacity-25 transition-all duration-700 group-hover:scale-105 group-hover:opacity-45"
+          />
+        )}
+        {/* Video cover background preview (e.g. Bunker Notas) */}
+        {!demo && !theme.coverPreviewImg && theme.coverPreviewVideo && (
+          <video
+            src={theme.coverPreviewVideo}
+            muted
+            loop
+            autoPlay
+            playsInline
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 size-full object-cover opacity-25 transition-opacity duration-500 group-hover:opacity-45"
           />
         )}
         {/* Subtle technical dot grid pattern */}
@@ -173,12 +221,21 @@ export default function ProjectCard({ project }) {
             </div>
           </div>
 
-          {/* Center Visual Showcase Emblem */}
+          {/* Center Visual Showcase Emblem with Official Application Icon */}
           <div className="my-auto flex items-center gap-4">
             <div
-              className={`flex size-14 shrink-0 items-center justify-center rounded-2xl border backdrop-blur-md transition-transform duration-500 group-hover:scale-110 ${theme.iconAccent}`}
+              className={`flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border backdrop-blur-md transition-transform duration-500 group-hover:scale-110 ${theme.iconAccent}`}
             >
-              <CoverIcon className="size-7" aria-hidden="true" />
+              {theme.appIconSrc ? (
+                <img
+                  src={theme.appIconSrc}
+                  alt=""
+                  aria-hidden="true"
+                  className="size-full object-cover"
+                />
+              ) : (
+                <CoverIcon className="size-7" aria-hidden="true" />
+              )}
             </div>
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
@@ -310,17 +367,48 @@ export default function ProjectCard({ project }) {
 
                 {activeTab === 'captures' && (
                   <div className="space-y-4">
-                    {/* Desktop captures */}
+                    {/* Desktop captures: Single uniform window with switcher when multiple real screenshots exist */}
                     {desktopMedia.length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="font-mono text-[11px] uppercase tracking-wider text-orange-400">
-                          Entorno de Escritorio
-                        </h4>
-                        <div className="grid grid-cols-1 gap-2.5">
-                          {desktopMedia.map((slot) => (
-                            <MediaPlaceholder key={slot.label} slot={slot} />
-                          ))}
-                        </div>
+                      <div className="space-y-2.5">
+                        {hasRealDesktopCaptures ? (
+                          <>
+                            <div className="flex flex-wrap items-center justify-between gap-2">
+                              <h4 className="font-mono text-[11px] uppercase tracking-wider text-orange-400">
+                                Entorno de Escritorio
+                              </h4>
+                              <div className="flex items-center gap-1.5">
+                                {desktopMedia.map((slot, idx) => (
+                                  <button
+                                    key={slot.label}
+                                    type="button"
+                                    onClick={() => setActiveCaptureIndex(idx)}
+                                    className={`rounded-md border px-2 py-0.5 font-mono text-[11px] transition-colors ${
+                                      activeCaptureIndex === idx
+                                        ? 'border-orange-500/50 bg-orange-500/20 text-orange-200'
+                                        : 'border-white/10 bg-zinc-900 text-zinc-400 hover:text-zinc-200'
+                                    }`}
+                                  >
+                                    Vista {idx + 1}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                            <MediaPlaceholder
+                              slot={desktopMedia[activeCaptureIndex] ?? desktopMedia[0]}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <h4 className="font-mono text-[11px] uppercase tracking-wider text-orange-400">
+                              Entorno de Escritorio
+                            </h4>
+                            <div className="grid grid-cols-1 gap-2.5">
+                              {desktopMedia.map((slot) => (
+                                <MediaPlaceholder key={slot.label} slot={slot} />
+                              ))}
+                            </div>
+                          </>
+                        )}
                       </div>
                     )}
 
@@ -330,7 +418,7 @@ export default function ProjectCard({ project }) {
                         <h4 className="font-mono text-[11px] uppercase tracking-wider text-orange-400">
                           Aplicación Android
                         </h4>
-                        <div className="grid grid-cols-1 gap-2.5">
+                        <div className="grid grid-cols-1 gap-3">
                           {androidMedia.map((slot) => (
                             <MediaPlaceholder key={slot.label} slot={slot} />
                           ))}
@@ -341,23 +429,28 @@ export default function ProjectCard({ project }) {
                     {/* Live Embedded Web Viewer when demo URL exists */}
                     {demo && (
                       <div className="overflow-hidden rounded-xl border border-white/15 bg-zinc-950 shadow-inner">
-                        <div className="flex items-center justify-between border-b border-white/10 bg-zinc-900/90 px-3 py-2">
-                          <div className="flex items-center gap-1.5">
-                            <span className="size-2.5 rounded-full bg-red-500/80" />
-                            <span className="size-2.5 rounded-full bg-amber-400/80" />
-                            <span className="size-2.5 rounded-full bg-emerald-400/80" />
-                            <span className="ml-2 truncate font-mono text-[11px] text-zinc-400">
-                              {demo.replace(/^https?:\/\//, '')}
+                        <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-zinc-900/90 px-3.5 py-2">
+                          <div className="flex min-w-0 flex-1 items-center gap-2">
+                            <div className="flex shrink-0 items-center gap-1.5">
+                              <span className="size-2.5 rounded-full bg-red-500/80" />
+                              <span className="size-2.5 rounded-full bg-amber-400/80" />
+                              <span className="size-2.5 rounded-full bg-emerald-400/80" />
+                            </div>
+                            <span
+                              title={demo}
+                              className="min-w-0 flex-1 truncate rounded-md border border-white/5 bg-zinc-950/70 px-2.5 py-1 font-mono text-[11px] text-zinc-400"
+                            >
+                              {demo.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                             </span>
                           </div>
                           <a
                             href={demo}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-1 font-mono text-[11px] font-medium text-orange-400 hover:text-orange-300"
+                            className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border border-orange-500/30 bg-orange-500/10 px-2.5 py-1 font-mono text-[11px] font-medium text-orange-300 transition-colors hover:border-orange-400/50 hover:bg-orange-500/20 hover:text-orange-200"
                           >
                             <span>Pantalla completa</span>
-                            <ExternalLink className="size-3" aria-hidden="true" />
+                            <ExternalLink className="size-3 shrink-0" aria-hidden="true" />
                           </a>
                         </div>
                         <iframe

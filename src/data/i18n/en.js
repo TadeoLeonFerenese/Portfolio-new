@@ -9,10 +9,10 @@ export const enProfile = {
   name: 'Tadeo Leon',
   brand: 'TADEO.DEV',
   statusLabel: 'System Online',
-  badge: '— Software & Applied AI Engineer | Data Science (75%)',
+  badge: '— Applied AI & Software Engineer | Data Science & Backend',
   title: "Hi, I'm Tadeo Leon",
   subtitle:
-    'Software Engineer at the National Judicial Branch of Argentina and creator of Local-First cross-platform applications powered by Artificial Intelligence (LLMs & Vision). Combining academic background in Programming and Data Science with 10+ years of solid experience in critical infrastructure.',
+    'Software Developer at the National Judicial Branch of Argentina and builder of systems powered by Generative Artificial Intelligence (multi-model LLM & Vision orchestration). Combining university degrees in Programming and Data Science with solid proficiency in Python, Laravel, Relational Databases, and Dockerized environments.',
   ctas: {
     primary: { label: 'View Systems & Demos', href: '#proyectos' },
     secondary: { label: 'Download CV (PDF)', href: undefined },
@@ -21,43 +21,43 @@ export const enProfile = {
   photoPlaceholder: 'PROFESSIONAL PROFILE PHOTO OR MAIN COMPOSITION',
 
   pillars: [
-    { id: 'ai', label: 'AI / Gemini API', description: 'LLM & OCR Integration' },
+    { id: 'ai', label: 'AI & Multi-LLMs', description: 'AI Orchestration & Vision' },
     { id: 'data', label: 'Python & Data', description: 'Pandas, NumPy, SQL' },
     { id: 'local-first', label: 'React & Local-First', description: 'Web, Android, Sync' },
-    { id: 'backend', label: 'PHP / Laravel & Linux', description: 'Backend & Infrastructure' },
+    { id: 'backend', label: 'PHP / Laravel & Docker', description: 'Backend & Containers' },
   ],
 }
 
 export const enSpecialties = [
   {
     id: 'applied-ai',
-    title: 'Applied AI & Automation',
+    title: 'Generative AI & Multi-Model Orchestration',
     description:
-      'Integration of multimodal models (gemini-3.5-flash) via API for computer vision (intelligent item extraction from delivery notes and invoices) and contextual production assistants.',
+      'Model-agnostic integration of AI engines and LLMs (Gemini, Claude, OpenAI, and local models) via API for computer vision, intelligent document extraction, and production workflow automation.',
   },
   {
     id: 'data-science',
-    title: 'Data Science & SQL Engines',
+    title: 'Data Science & SQL Databases',
     description:
-      'Statistical analysis with Python (Pandas, NumPy, Matplotlib) and relational database design in PostgreSQL, MySQL, and SQLite (managed with DBeaver and TablePlus).',
+      'Statistical analysis and data processing with Python (Pandas, NumPy, Matplotlib) paired with relational database design, optimization, and management (MySQL, PostgreSQL, and SQLite).',
   },
   {
     id: 'local-first',
-    title: 'Local-First & Web/Mobile Architecture',
+    title: 'Software Development & Local-First Architecture',
     description:
-      'Development in PHP, Laravel, Node.js, and React.js. Building custom Wi-Fi Direct synchronization engines via local sockets/ports between Windows and Android without cloud dependencies.',
+      'Building critical management systems in PHP/Laravel, TypeScript, Node.js, and React, focusing on visual symmetry (UX/UI) and cross-platform Windows/Android synchronization.',
   },
   {
     id: 'infrastructure',
-    title: 'Critical Infrastructure & Hardware Domain',
+    title: 'Docker, Virtualized Environments & Diagnostics',
     description:
-      '10 years of real-world mastery in Linux administration, Docker, virtualized environments (Oracle VirtualBox), Apache/Nginx, and advanced server and network diagnostics.',
+      'Deploying reproducible development environments with Docker and virtual machines, backed by 10+ years of root-cause diagnostics in IT infrastructure and networks.',
   },
 ]
 
 export const enDifferential = {
-  title: 'From Hardware to Code? My Edge in Your Team',
-  body: 'Unlike standard profiles that only interact with surface-level code, I bring 10 years of keeping critical systems running under pressure (Pentacom S.A. and the Judicial Branch IT Directorate), paired with an outstanding academic foundation at UNaB (Graduated in Programming with an 8.50 GPA and 75% completed in Data Science with an 8.33 GPA).',
+  title: 'Software Engineering, Data & Applied AI: My Edge',
+  body: 'I combine building critical management systems at the National Judicial Branch of Argentina (Laravel, SQL, and Docker) with a strong academic foundation at UNaB (Programming Graduate with an 8.50 GPA and 75% completed in Data Science with an 8.33 GPA). My 10+ prior years solving IT infrastructure give me a sharp analytical mindset to diagnose root-cause errors and design AI solutions that solve real operational problems.',
 }
 
 export const enProjects = [
@@ -83,33 +83,27 @@ export const enProjects = [
     media: [
       {
         type: 'video',
-        label: 'DEMO VIDEO: Real-time synchronization between Windows PC and Android + AI Invoice Reading',
-        aspect: '16/9',
+        label: 'ANDROID DEMO: Real-time synchronization and AI receipt extraction',
+        aspect: '9/19.5',
+        src: '/videos/projects/nodo.mp4',
       },
       {
         type: 'device-desktop',
-        label: 'WINDOWS SCREENSHOT 1: Profile & Sync Panel showing Active SQLite, Gemini 3.5 Flash setup and Wi-Fi Server with QR',
+        label: 'Desktop Catalog view with barcode lookup and local status',
         aspect: '16/10',
+        src: '/images/projects/nodo/windows-catalogo.jpg',
       },
       {
         type: 'device-desktop',
-        label: 'WINDOWS SCREENSHOT 2: Clean desktop catalog view',
+        label: 'Inventory Movement History (stock in and stock out logs)',
         aspect: '16/10',
+        src: '/images/projects/nodo/windows-movimientos.jpg',
       },
       {
-        type: 'device-android',
-        label: 'ANDROID SCREENSHOT 1: Catalog with prices and stock',
-        aspect: '9/19.5',
-      },
-      {
-        type: 'device-android',
-        label: 'ANDROID SCREENSHOT 2: Movement History (Stock In / Stock Out)',
-        aspect: '9/19.5',
-      },
-      {
-        type: 'device-android',
-        label: 'ANDROID SCREENSHOT 3: AI Invoice Entry',
-        aspect: '9/19.5',
+        type: 'device-desktop',
+        label: 'AI Module for receipt capture and automated stock extraction',
+        aspect: '16/10',
+        src: '/images/projects/nodo/windows-remito-ia.jpg',
       },
     ],
   },
@@ -128,8 +122,9 @@ export const enProjects = [
     media: [
       {
         type: 'video',
-        label: 'DEMO VIDEO: Smooth walkthrough of Bunker Notas, theme switcher, unlocking secure notes and using the floating AI button',
-        aspect: '16/9',
+        label: 'ANDROID DEMO: Walkthrough of Bunker Notas, biometric security and AI assistant',
+        aspect: '9/19.5',
+        src: '/videos/projects/bunker-notas.mp4',
       },
       {
         type: 'device-android',
@@ -156,8 +151,8 @@ export const enProjects = [
     confidential: true,
     details: [
       'Evolutionary maintenance, bug fixing, and updating frontend views and backend business logic in PHP and Laravel.',
-      'Systems involved: Judicial Training School, Internal Audit Management (UAI), and Judicial Vehicle Fleet Registry.',
-      'Local environment and isolated test staging using virtual machines in Oracle VirtualBox.',
+      'Systems involved: EDA, Judicial Training School, Internal Audit Management (UAI), and Judicial Vehicle Fleet Registry.',
+      'Relational database management and isolated local development and test environments using Docker and virtual machines in Oracle VirtualBox.',
     ],
     media: [],
   },

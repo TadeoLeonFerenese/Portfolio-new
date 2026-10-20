@@ -31,7 +31,7 @@ export const esUI = {
   specialties: {
     badge: 'Dominios Técnicos & Capacidades',
     heading: 'Especialidades & Enfoque de Ingeniería',
-    subtitle: 'Desde el diagnóstico de bajo nivel en servidores hasta modelos de IA multimodal en producción.',
+    subtitle: 'Integración de motores de IA, ciencia de datos, bases de datos relacionales y contenedores Docker en sistemas reales.',
   },
   projects: {
     badge: 'Proyectos & Sistemas en Producción',

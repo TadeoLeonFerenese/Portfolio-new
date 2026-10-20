@@ -40,11 +40,16 @@ describe('content-data: projects', () => {
     expect(others.every((p) => p.confidential !== true)).toBe(true)
   })
 
-  it('ships every media slot without src so placeholders render (AGENT.md rule)', () => {
+  it('validates that media slots have proper types and valid paths when defined', () => {
     const slots = projects.flatMap((p) => p.media)
 
     expect(slots.length).toBeGreaterThan(0)
-    expect(slots.every((slot) => slot.src === undefined)).toBe(true)
+    for (const slot of slots) {
+      if (slot.src !== undefined) {
+        expect(typeof slot.src).toBe('string')
+        expect(slot.src.startsWith('/')).toBe(true)
+      }
+    }
   })
 
   it('keeps the repo and demo URLs from AGENT.md', () => {

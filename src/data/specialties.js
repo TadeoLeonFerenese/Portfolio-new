@@ -1,31 +1,31 @@
 export const specialties = [
   {
     id: 'applied-ai',
-    title: 'Applied AI & Automatización',
+    title: 'IA Generativa & Orquestación Multi-Modelo',
     description:
-      'Integración de modelos multimodales (`gemini-3.5-flash`) mediante API para visión artificial (extracción inteligente de ítems en remitos) y asistentes contextuales en producción.',
+      'Integración agnóstica de motores de IA y LLMs (Gemini, Claude, OpenAI y modelos locales) vía API para visión artificial, extracción inteligente de documentos y automatización de flujos en producción.',
   },
   {
     id: 'data-science',
-    title: 'Ciencia de Datos & Motores SQL',
+    title: 'Ciencia de Datos & Bases de Datos SQL',
     description:
-      'Análisis estadístico con Python (Pandas, NumPy, Matplotlib) y diseño relacional en PostgreSQL, MySQL y SQLite (manejados con DBeaver y TablePlus).',
+      'Análisis estadístico y procesamiento de datos con Python (Pandas, NumPy, Matplotlib) junto al diseño, optimización y gestión de bases de datos relacionales (MySQL, PostgreSQL y SQLite).',
   },
   {
     id: 'local-first',
-    title: 'Arquitectura Local-First & Web/Mobile',
+    title: 'Desarrollo de Software & Arquitectura Local-First',
     description:
-      'Desarrollo en PHP, Laravel, Node.js y React.js. Creación de motores de sincronización Wi-Fi Direct por sockets/puerto local entre Windows y Android sin depender de la nube.',
+      'Construcción de sistemas críticos de gestión en PHP/Laravel, TypeScript, Node.js y React, cuidando la simetría visual (UX/UI) y la sincronización multiplataforma Windows/Android.',
   },
   {
     id: 'infrastructure',
-    title: 'Infraestructura Crítica & Fierros',
+    title: 'Docker, Entornos Virtualizados & Diagnóstico',
     description:
-      '10 años de dominio real en administración Linux, Docker, entornos virtualizados (Oracle VirtualBox), Apache/Nginx y diagnóstico avanzado de redes y servidores.',
+      'Despliegue de entornos de desarrollo reproducibles con Docker y máquinas virtuales, respaldado por +10 años diagnosticando problemas de raíz en infraestructura IT y redes.',
   },
 ]
 
 export const differential = {
-  title: '¿De los fierros al código? Mi diferencial en tu equipo',
-  body: 'A diferencia de un perfil estándar que solo conoce el código superficial, cuento con 10 años sosteniendo sistemas bajo presión (Pentacom S.A. y Dirección Gral. de Tecnología del PJN), sumado a una base académica sobresaliente en la UNaB (Graduado en Programación con promedio 8.50 y 75% de Ciencia de Datos con promedio 8.33).',
+  title: 'Ingeniería de Software, Datos e IA Aplicada: Mi diferencial',
+  body: 'Combino el desarrollo de sistemas críticos en el Poder Judicial de la Nación (Laravel, SQL y Docker) con una sólida formación universitaria en la UNaB (Graduado en Programación con promedio 8.50 y 75% de Ciencia de Datos con promedio 8.33). Mis 10 años previos resolviendo infraestructura IT me dan una capacidad analítica clave para diagnosticar errores de raíz y diseñar soluciones de IA que resuelven problemas reales.',
 }

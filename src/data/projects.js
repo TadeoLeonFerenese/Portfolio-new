@@ -22,33 +22,27 @@ export const projects = [
     media: [
       {
         type: 'video',
-        label: 'VIDEO DEMO: Sincronización en tiempo real entre PC Windows y Android + Lectura de Remito con IA',
-        aspect: '16/9',
+        label: 'DEMO ANDROID: Sincronización en tiempo real y lectura de remito con IA',
+        aspect: '9/19.5',
+        src: '/videos/projects/nodo.mp4',
       },
       {
         type: 'device-desktop',
-        label: 'CAPTURA WINDOWS 1: Panel de Perfil & Sincronización mostrando SQLite Activo, configuración Gemini 3.5 Flash y Servidor Wi-Fi con QR',
+        label: 'Catálogo de escritorio con buscador de código de barras y estado local',
         aspect: '16/10',
+        src: '/images/projects/nodo/windows-catalogo.jpg',
       },
       {
         type: 'device-desktop',
-        label: 'CAPTURA WINDOWS 2: Vista de Catálogo limpio de escritorio',
+        label: 'Historial de movimientos de inventario (entradas y salidas de stock)',
         aspect: '16/10',
+        src: '/images/projects/nodo/windows-movimientos.jpg',
       },
       {
-        type: 'device-android',
-        label: 'CAPTURA ANDROID 1: Catálogo con precios y stock',
-        aspect: '9/19.5',
-      },
-      {
-        type: 'device-android',
-        label: 'CAPTURA ANDROID 2: Historial de Movimientos (Entradas/Salidas)',
-        aspect: '9/19.5',
-      },
-      {
-        type: 'device-android',
-        label: 'CAPTURA ANDROID 3: Carga de Remito con IA',
-        aspect: '9/19.5',
+        type: 'device-desktop',
+        label: 'Módulo de IA para carga y extracción automatizada de remitos',
+        aspect: '16/10',
+        src: '/images/projects/nodo/windows-remito-ia.jpg',
       },
     ],
   },
@@ -67,8 +61,9 @@ export const projects = [
     media: [
       {
         type: 'video',
-        label: 'VIDEO DEMO: Recorrido fluido por Bunker Notas, cambio de temas, desbloqueo de notas seguras y uso del botón flotante de IA',
-        aspect: '16/9',
+        label: 'DEMO ANDROID: Recorrido por Bunker Notas, desbloqueo seguro con huella y asistente IA',
+        aspect: '9/19.5',
+        src: '/videos/projects/bunker-notas.mp4',
       },
       {
         type: 'device-android',
@@ -95,8 +90,8 @@ export const projects = [
     confidential: true,
     details: [
       'Mantenimiento evolutivo, corrección de bugs y actualización de vistas frontend y lógica de negocio backend en PHP y Laravel.',
-      'Sistemas intervenidos: Escuela Judicial, Gestión de Auditorías UAI y Registro de Pliego Automotor.',
-      'Gestión de entornos locales de desarrollo y pruebas aisladas utilizando máquinas virtuales en Oracle VirtualBox.',
+      'Sistemas intervenidos: EDA, Escuela Judicial, Gestión de Auditorías UAI y Registro de Pliego Automotor.',
+      'Gestión de bases de datos relacionales y entornos locales de desarrollo y pruebas aisladas utilizando Docker y máquinas virtuales en Oracle VirtualBox.',
     ],
     media: [],
   },

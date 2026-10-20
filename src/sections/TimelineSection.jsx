@@ -12,16 +12,12 @@ export default function TimelineSection() {
   const { experience, education, ui } = useContent()
 
   return (
-    <section id="trayectoria" className="relative overflow-hidden px-6 py-24 sm:py-32">
-      {/* Warm ambient background glows */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/3 left-0 size-[480px] rounded-full bg-red-600/8 blur-[130px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-1/4 right-0 size-[480px] rounded-full bg-orange-500/8 blur-[130px]"
-      />
+    <section id="trayectoria" className="relative px-6 py-24 sm:py-32">
+      {/* Warm ambient background glows (unclipped vertically for seamless page flow) */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/3 left-0 size-[480px] rounded-full bg-red-600/7 blur-[150px]" />
+        <div className="absolute bottom-1/4 right-0 size-[480px] rounded-full bg-orange-500/7 blur-[150px]" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Section Header */}
