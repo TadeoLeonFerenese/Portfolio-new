@@ -72,10 +72,12 @@ export default function MediaPlaceholder({ slot }) {
               <video
                 src={src}
                 controls
+                muted
+                loop
+                autoPlay
                 playsInline
-                preload="metadata"
                 aria-label={label}
-                className="relative z-10 h-full w-full bg-zinc-950/90 object-contain"
+                className="relative z-10 h-full w-full object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]"
               />
             ) : (
               <img

@@ -62,8 +62,9 @@ const COVER_THEME_BY_ID = {
     pillStyle: 'border-amber-500/30 bg-amber-500/10 text-amber-200',
     coverTag: 'INFRAESTRUCTURA CRÍTICA • PHP / LARAVEL',
     Icon: Landmark,
+    appIconSrc: '/images/projects/pjn/icon.png',
     iconAccent:
-      'border-white/10 bg-zinc-950/80 text-amber-400 drop-shadow-[0_0_10px_rgba(245,158,11,0.7)]',
+      'border-amber-500/30 bg-white p-1 text-amber-400 shadow-[0_0_16px_rgba(245,158,11,0.45)]',
   },
   pedimon: {
     gradient: 'from-rose-600/30 via-orange-500/20 to-zinc-950',
@@ -115,12 +116,14 @@ export default function ProjectCard({ project }) {
 
   const [activeTab, setActiveTab] = useState(availableTabs[0]?.id ?? 'architecture')
   const [activeCaptureIndex, setActiveCaptureIndex] = useState(0)
+  const [activeAndroidCaptureIndex, setActiveAndroidCaptureIndex] = useState(0)
 
   // Group media slots for captures tab
   const desktopMedia = media.filter((m) => m.type === 'device-desktop')
   const androidMedia = media.filter((m) => m.type === 'device-android')
   const otherImages = media.filter((m) => m.type === 'image')
   const hasRealDesktopCaptures = desktopMedia.length > 1 && desktopMedia.every((m) => Boolean(m.src))
+  const hasRealAndroidCaptures = androidMedia.length > 1 && androidMedia.every((m) => Boolean(m.src))
 
   return (
     <article
@@ -412,17 +415,48 @@ export default function ProjectCard({ project }) {
                       </div>
                     )}
 
-                    {/* Android captures */}
+                    {/* Android captures: Single uniform window with switcher when multiple real screenshots exist */}
                     {androidMedia.length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="font-mono text-[11px] uppercase tracking-wider text-orange-400">
-                          Aplicación Android
-                        </h4>
-                        <div className="grid grid-cols-1 gap-3">
-                          {androidMedia.map((slot) => (
-                            <MediaPlaceholder key={slot.label} slot={slot} />
-                          ))}
-                        </div>
+                      <div className="space-y-2.5">
+                        {hasRealAndroidCaptures ? (
+                          <>
+                            <div className="flex flex-wrap items-center justify-between gap-2">
+                              <h4 className="font-mono text-[11px] uppercase tracking-wider text-orange-400">
+                                Aplicación Android
+                              </h4>
+                              <div className="flex items-center gap-1.5">
+                                {androidMedia.map((slot, idx) => (
+                                  <button
+                                    key={slot.label}
+                                    type="button"
+                                    onClick={() => setActiveAndroidCaptureIndex(idx)}
+                                    className={`rounded-md border px-2 py-0.5 font-mono text-[11px] transition-colors ${
+                                      activeAndroidCaptureIndex === idx
+                                        ? 'border-orange-500/50 bg-orange-500/20 text-orange-200'
+                                        : 'border-white/10 bg-zinc-900 text-zinc-400 hover:text-zinc-200'
+                                    }`}
+                                  >
+                                    Vista {idx + 1}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                            <MediaPlaceholder
+                              slot={androidMedia[activeAndroidCaptureIndex] ?? androidMedia[0]}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <h4 className="font-mono text-[11px] uppercase tracking-wider text-orange-400">
+                              Aplicación Android
+                            </h4>
+                            <div className="grid grid-cols-1 gap-3">
+                              {androidMedia.map((slot) => (
+                                <MediaPlaceholder key={slot.label} slot={slot} />
+                              ))}
+                            </div>
+                          </>
+                        )}
                       </div>
                     )}
 
