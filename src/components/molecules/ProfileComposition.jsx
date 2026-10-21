@@ -31,7 +31,7 @@ export default function ProfileComposition({ className = '' }) {
             <img
               src={profile.photo}
               alt={profile.name}
-              className="relative z-20 h-auto w-[270px] -translate-y-3 object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.85)] [mask-image:linear-gradient(to_bottom,black_88%,transparent_100%)] sm:w-[310px] md:w-[355px]"
+              className="relative z-20 h-auto w-[270px] -translate-y-3 object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.85)] sm:w-[310px] md:w-[355px]"
             />
           </div>
         ) : (

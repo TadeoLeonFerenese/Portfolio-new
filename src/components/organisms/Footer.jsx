@@ -98,11 +98,17 @@ export default function Footer({ className = '' }) {
             </a>
           </ScrollReveal>
 
-          {/* Location Card */}
+          {/* Location Card linking to Google Maps (José Mármol, Zona Sur) */}
           <ScrollReveal direction="up" delay={240} className="h-full sm:col-span-2 lg:col-span-1">
-            <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/65 p-6 shadow-lg shadow-black/40 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-orange-500/40">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Club+El+Fogon+Jose+Marmol+Buenos+Aires"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Ver ubicación en Google Maps (José Mármol, Zona Sur, Buenos Aires)"
+              className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/65 p-6 shadow-lg shadow-black/40 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-orange-500/50 hover:bg-zinc-900/90"
+            >
               <div className="space-y-3">
-                <div className="flex size-10 items-center justify-center rounded-lg border border-orange-500/30 bg-orange-500/15 text-orange-400">
+                <div className="flex size-10 items-center justify-center rounded-lg border border-orange-500/30 bg-orange-500/15 text-orange-400 transition-colors group-hover:bg-orange-500/25">
                   <MapPin className="size-5" aria-hidden="true" />
                 </div>
                 <div>
@@ -112,13 +118,22 @@ export default function Footer({ className = '' }) {
                   <p className="mt-1 font-heading text-base font-semibold text-zinc-100 break-words sm:text-lg">
                     {contact.location}
                   </p>
+                  <p className="mt-0.5 font-mono text-xs text-orange-400/90">
+                    Zona Sur — José Mármol
+                  </p>
                 </div>
               </div>
-              <div className="mt-6 flex items-center gap-2 font-mono text-xs text-zinc-400">
-                <span className="size-2 rounded-full bg-emerald-400" />
-                <span>{ui.footer.timezoneNote}</span>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-white/5 pt-3">
+                <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
+                  <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>{ui.footer.timezoneNote}</span>
+                </div>
+                <div className="flex items-center gap-1 font-mono text-xs text-orange-400 transition-colors group-hover:text-orange-300">
+                  <span>Ver mapa</span>
+                  <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                </div>
               </div>
-            </div>
+            </a>
           </ScrollReveal>
         </div>
 

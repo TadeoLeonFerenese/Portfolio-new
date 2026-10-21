@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <rect width="32" height="32" rx="7" fill="#09090b" />
+  <rect x="0.75" y="0.75" width="30.5" height="30.5" rx="6.25" stroke="#27272a" stroke-width="1.5" />
+  <!-- Letter T -->
+  <path d="M8.5 9.5h15M16 9.5v13.5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Available Status Dot -->
+  <circle cx="23" cy="23" r="4.2" fill="#10b981" fill-opacity="0.25" />
+  <circle cx="23" cy="23" r="3" fill="#10b981" />
+</svg>
