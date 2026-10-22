@@ -105,6 +105,12 @@ export const enProjects = [
         aspect: '16/10',
         src: '/images/projects/nodo/windows-remito-ia.jpg',
       },
+      {
+        type: 'device-desktop',
+        label: 'Local Wi-Fi synchronization panel, SQLite status and AI configuration',
+        aspect: '16/10',
+        src: '/images/projects/nodo/windows-perfil-sync.jpg',
+      },
     ],
   },
   {

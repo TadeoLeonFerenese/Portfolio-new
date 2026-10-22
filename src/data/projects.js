@@ -44,6 +44,12 @@ export const projects = [
         aspect: '16/10',
         src: '/images/projects/nodo/windows-remito-ia.jpg',
       },
+      {
+        type: 'device-desktop',
+        label: 'Panel de sincronización Wi-Fi local, estado SQLite y configuración de IA',
+        aspect: '16/10',
+        src: '/images/projects/nodo/windows-perfil-sync.jpg',
+      },
     ],
   },
   {
