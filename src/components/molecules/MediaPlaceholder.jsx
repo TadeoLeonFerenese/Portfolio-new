@@ -1,4 +1,4 @@
-import { ExternalLink, Film, Image, Monitor, Smartphone } from 'lucide-react'
+import { ExternalLink, Film, Image, Maximize2, Monitor, Smartphone } from 'lucide-react'
 
 const PLACEHOLDER_ICONS = {
   video: Film,
@@ -10,9 +10,12 @@ const PLACEHOLDER_ICONS = {
 /**
  * Renders real media inside the unified Window Frame + Bottom Caption Pill
  * (matching the Pedimon card layout) when `slot.src` exists; otherwise a labeled placeholder.
- * @param {{ slot: import('@/data/types.js').MediaSlot }} props
+ * @param {{
+ *   slot: import('@/data/types.js').MediaSlot,
+ *   onFullscreen?: () => void,
+ * }} props
  */
-export default function MediaPlaceholder({ slot }) {
+export default function MediaPlaceholder({ slot, onFullscreen }) {
   const { type, label, aspect, src } = slot
   const Icon = PLACEHOLDER_ICONS[type] ?? Image
 
@@ -21,8 +24,9 @@ export default function MediaPlaceholder({ slot }) {
       <img
         src={src}
         alt={label}
-        className="w-full rounded-xl border border-line object-cover"
+        className={`w-full rounded-xl border border-line object-cover ${onFullscreen ? 'cursor-pointer' : ''}`}
         style={{ aspectRatio: aspect }}
+        onClick={onFullscreen}
       />
     )
   }
@@ -37,7 +41,7 @@ export default function MediaPlaceholder({ slot }) {
           {/* Window Chrome Top Bar */}
           <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-zinc-900/90 px-3.5 py-2">
             <div className="flex min-w-0 flex-1 items-center gap-2">
-              <div className="flex shrink-0 items-center gap-1.5">
+              <div className="flex shrink-0 items-center gap-1.5" aria-hidden="true">
                 <span className="size-2.5 rounded-full bg-red-500/80" />
                 <span className="size-2.5 rounded-full bg-amber-400/80" />
                 <span className="size-2.5 rounded-full bg-emerald-400/80" />
@@ -49,15 +53,28 @@ export default function MediaPlaceholder({ slot }) {
                 {displayPath}
               </span>
             </div>
-            <a
-              href={src}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border border-orange-500/30 bg-orange-500/10 px-2.5 py-1 font-mono text-[11px] font-medium text-orange-300 transition-colors hover:border-orange-400/50 hover:bg-orange-500/20 hover:text-orange-200"
-            >
-              <span>Pantalla completa</span>
-              <ExternalLink className="size-3 shrink-0" aria-hidden="true" />
-            </a>
+
+            {onFullscreen ? (
+              <button
+                type="button"
+                onClick={onFullscreen}
+                aria-label="Ver en pantalla completa"
+                className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border border-orange-500/30 bg-orange-500/10 px-2.5 py-1 font-mono text-[11px] font-medium text-orange-300 transition-colors hover:border-orange-400/50 hover:bg-orange-500/20 hover:text-orange-200"
+              >
+                <span>Pantalla completa</span>
+                <Maximize2 className="size-3 shrink-0" aria-hidden="true" />
+              </button>
+            ) : (
+              <a
+                href={src}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border border-orange-500/30 bg-orange-500/10 px-2.5 py-1 font-mono text-[11px] font-medium text-orange-300 transition-colors hover:border-orange-400/50 hover:bg-orange-500/20 hover:text-orange-200"
+              >
+                <span>Pantalla completa</span>
+                <ExternalLink className="size-3 shrink-0" aria-hidden="true" />
+              </a>
+            )}
           </div>
 
           {/* Uniform Viewport (h-60 matching Pedimon) */}
@@ -83,7 +100,11 @@ export default function MediaPlaceholder({ slot }) {
               <img
                 src={src}
                 alt={label}
-                className="relative z-10 h-full w-full object-contain"
+                onClick={onFullscreen}
+                className={`relative z-10 h-full w-full object-contain ${
+                  onFullscreen ? 'cursor-pointer transition-transform duration-300 hover:scale-[1.02]' : ''
+                }`}
+                title={onFullscreen ? 'Click para expandir' : undefined}
               />
             )}
           </div>

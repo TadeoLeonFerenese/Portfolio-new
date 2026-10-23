@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import ProjectCard from './ProjectCard.jsx'
 
@@ -130,5 +130,39 @@ describe('ProjectCard organism', () => {
     expect(demoLink).toHaveAttribute('href', 'https://pedimon-chi.vercel.app/')
     expect(demoLink).toHaveAttribute('target', '_blank')
     expect(demoLink).toHaveAttribute('rel', 'noreferrer')
+  })
+  it('opens in-place modal on fullscreen click and navigates between views', () => {
+    const multiViewProject = {
+      ...nodoProject,
+      media: [
+        { type: 'device-desktop', label: 'Vista 1: Catálogo', aspect: '16/10', src: '/img-1.jpg' },
+        { type: 'device-desktop', label: 'Vista 2: Movimientos', aspect: '16/10', src: '/img-2.jpg' },
+      ],
+    }
+
+    render(<ProjectCard project={multiViewProject} />)
+
+    // Switch to captures tab
+    const capturesTab = screen.getByRole('tab', { name: /capturas/i })
+    fireEvent.click(capturesTab)
+
+    // Click on "Pantalla completa" button
+    const fullscreenBtn = screen.getByRole('button', { name: /pantalla completa/i })
+    fireEvent.click(fullscreenBtn)
+
+    // Modal dialog is open in-place
+    const dialog = screen.getByRole('dialog')
+    expect(dialog).toBeInTheDocument()
+    expect(within(dialog).getByText('Vista 1: Catálogo')).toBeInTheDocument()
+
+    // Navigate to next image
+    const nextBtn = within(dialog).getByRole('button', { name: /siguiente imagen/i })
+    fireEvent.click(nextBtn)
+    expect(within(dialog).getByText('Vista 2: Movimientos')).toBeInTheDocument()
+
+    // Close modal
+    const closeBtn = within(dialog).getByRole('button', { name: /cerrar modal/i })
+    fireEvent.click(closeBtn)
+    expect(screen.queryByRole('dialog')).toBeNull()
   })
 })

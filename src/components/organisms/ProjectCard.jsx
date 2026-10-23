@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import MediaPlaceholder from '../molecules/MediaPlaceholder.jsx'
 import PipelineFlow from '../molecules/PipelineFlow.jsx'
+import ImageGalleryModal from '../molecules/ImageGalleryModal.jsx'
 
 function PokeballIcon({ className = 'size-7' }) {
   return (
@@ -117,6 +118,24 @@ export default function ProjectCard({ project }) {
   const [activeTab, setActiveTab] = useState(availableTabs[0]?.id ?? 'architecture')
   const [activeCaptureIndex, setActiveCaptureIndex] = useState(0)
   const [activeAndroidCaptureIndex, setActiveAndroidCaptureIndex] = useState(0)
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+  const [galleryImages, setGalleryImages] = useState([])
+  const [galleryIndex, setGalleryIndex] = useState(0)
+
+  const openGallery = (images, index) => {
+    setGalleryImages(images)
+    setGalleryIndex(index)
+    setIsGalleryOpen(true)
+  }
+
+  const handleGalleryNavigate = (newIndex) => {
+    setGalleryIndex(newIndex)
+    if (galleryImages === desktopMedia) {
+      setActiveCaptureIndex(newIndex)
+    } else if (galleryImages === androidMedia) {
+      setActiveAndroidCaptureIndex(newIndex)
+    }
+  }
 
   // Group media slots for captures tab
   const desktopMedia = media.filter((m) => m.type === 'device-desktop')
@@ -398,6 +417,7 @@ export default function ProjectCard({ project }) {
                             </div>
                             <MediaPlaceholder
                               slot={desktopMedia[activeCaptureIndex] ?? desktopMedia[0]}
+                              onFullscreen={() => openGallery(desktopMedia, activeCaptureIndex)}
                             />
                           </>
                         ) : (
@@ -406,8 +426,8 @@ export default function ProjectCard({ project }) {
                               Entorno de Escritorio
                             </h4>
                             <div className="grid grid-cols-1 gap-2.5">
-                              {desktopMedia.map((slot) => (
-                                <MediaPlaceholder key={slot.label} slot={slot} />
+                              {desktopMedia.map((slot, idx) => (
+                                <MediaPlaceholder key={slot.label} slot={slot} onFullscreen={() => openGallery(desktopMedia, idx)} />
                               ))}
                             </div>
                           </>
@@ -443,6 +463,7 @@ export default function ProjectCard({ project }) {
                             </div>
                             <MediaPlaceholder
                               slot={androidMedia[activeAndroidCaptureIndex] ?? androidMedia[0]}
+                              onFullscreen={() => openGallery(androidMedia, activeAndroidCaptureIndex)}
                             />
                           </>
                         ) : (
@@ -451,8 +472,8 @@ export default function ProjectCard({ project }) {
                               Aplicación Android
                             </h4>
                             <div className="grid grid-cols-1 gap-3">
-                              {androidMedia.map((slot) => (
-                                <MediaPlaceholder key={slot.label} slot={slot} />
+                              {androidMedia.map((slot, idx) => (
+                                <MediaPlaceholder key={slot.label} slot={slot} onFullscreen={() => openGallery(androidMedia, idx)} />
                               ))}
                             </div>
                           </>
@@ -499,8 +520,8 @@ export default function ProjectCard({ project }) {
                     {/* Other image captures */}
                     {otherImages.length > 0 && (
                       <div className="space-y-2.5">
-                        {otherImages.map((slot) => (
-                          <MediaPlaceholder key={slot.label} slot={slot} />
+                        {otherImages.map((slot, idx) => (
+                          <MediaPlaceholder key={slot.label} slot={slot} onFullscreen={() => openGallery(otherImages, idx)} />
                         ))}
                       </div>
                     )}
@@ -543,6 +564,15 @@ export default function ProjectCard({ project }) {
           )}
         </div>
       </div>
+      {/* In-place interactive captures modal */}
+      <ImageGalleryModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        images={galleryImages}
+        currentIndex={galleryIndex}
+        onNavigate={handleGalleryNavigate}
+        projectTitle={title}
+      />
     </article>
   )
 }
